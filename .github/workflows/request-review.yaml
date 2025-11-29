@@ -1,0 +1,13 @@
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  request-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request reviewers
+        run: gh pr edit ${{ github.event.pull_request.number }} --add-reviewer tsaarni
